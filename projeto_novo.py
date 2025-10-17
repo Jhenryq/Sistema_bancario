@@ -6,6 +6,24 @@ LIMITE_EXTRATO = 3
 extrato = 0
 saques = 0
 
+def filtrar_conta():
+    if not nomes:
+        print('Nenhuma conta cadastrada ainda!')
+        return
+    nome_busca = input('Quais dados por nome deseja buscar? ')
+    encontrado = False
+    for nome, cpf, conta in zip(nomes, cpfs, contas):
+        if nome.lower() == nome_busca:
+            print(f'✅ Conta encontrada!!!')
+            print(f'Nome: {nome}')
+            print(f'CPF: {cpf}')
+            print(f'Conta: {conta}')
+            encontrado = True
+    if not encontrado:
+        print(f'❌ Nenhuma conta encontrada!!!')
+            
+
+
 def saque():
     global extrato
     global saques
@@ -75,6 +93,7 @@ def menu():
         print(f'[3] Sacar')
         print(f'[4] Depositar')
         print(f'[5] Extrato')
+        print(f'[6] Filtrar conta')
         print()
         fazer = input('O que deseja fazer? ')
         if fazer == '0':
@@ -90,6 +109,8 @@ def menu():
             deposito()
         elif fazer == '5':
             extrato_conta()
+        elif fazer == '6':
+            filtrar_conta()
         else:
             print('Selecione uma opção válida')
 
